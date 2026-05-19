@@ -4,9 +4,9 @@ class Platformer extends Phaser.Scene {
     }
 
     init() {
-        // variables and settings
-        this.ACCELERATION = 400;
-        this.DRAG = 500;    // DRAG < ACCELERATION = icy slide
+       
+        this.ACCELERATION = 300;
+        this.DRAG = 1000;  
         this.physics.world.gravity.y = 1500;
         this.JUMP_VELOCITY = -600;
         this.PARTICLE_VELOCITY = 50;
@@ -14,63 +14,45 @@ class Platformer extends Phaser.Scene {
     }
 
     create() {
+
+        this.map = this.add.tilemap("HamsterDisaster", 18, 18, 125, 25);
+
+        this.tileset = this.map.addTilesetImage("tilemap_packed", "tilemap_tiles");
         
-        // Create a new tilemap game object which uses 18x18 pixel tiles, and is
-        // 45 tiles wide and 25 tiles tall.
-        this.map = this.add.tilemap("platformer-level-1", 18, 18, 45, 25);
-
-        // Add a tileset to the map
-        // First parameter: name we gave the tileset in Tiled
-        // Second parameter: key for the tilesheet (from this.load.image in Load.js)
-        this.tileset = this.map.addTilesetImage("kenny_tilemap_packed", "tilemap_tiles");
-
-        // Create a layer
-        this.groundLayer = this.map.createLayer("Ground-n-Platforms", this.tileset, 0, 0);
-
-        // Make it collidable
+        this.skyLayer = this.map.createLayer("Background", this.tileset, 0, 0);
+        this.groundLayer = this.map.createLayer("Ground", this.tileset, 0, 0);
         this.groundLayer.setCollisionByProperty({
             collides: true
         });
+        this.dangerLayer = this.map.createLayer("Danger", this.tileset, 0, 0);
+        this.dangerLayer.setCollisionByProperty({
+            collides: true
+        });
+        this.collectLayer = this.map.createLayer("Collect", this.tileset, 0, 0);
+        this.goalLayer = this.map.createLayer("Goal", this.tileset, 0, 0);
 
-        // TODO: Add createFromObjects here
-        // Find coins in the "Objects" layer in Phaser
-        // Look for them by finding objects with the name "coin"
-        // Assign the coin texture from the tilemap_sheet sprite sheet
-        // Phaser docs:
-        // https://newdocs.phaser.io/docs/3.80.0/focus/Phaser.Tilemaps.Tilemap-createFromObjects
 
         this.coins = this.map.createFromObjects("Objects", {
             name: "coin",
             key: "tilemap_sheet",
             frame: 151
         });
-
-        // TODO: Add turn into Arcade Physics here
-        // Since createFromObjects returns an array of regular Sprites, we need to convert 
-        // them into Arcade Physics sprites (STATIC_BODY, so they don't move) 
+ 
         this.physics.world.enable(this.coins, Phaser.Physics.Arcade.STATIC_BODY);
 
-        // Create a Phaser group out of the array this.coins
-        // This will be used for collision detection below.
         this.coinGroup = this.add.group(this.coins);
         
-
-        // set up player avatar
-        my.sprite.player = this.physics.add.sprite(30, 345, "platformer_characters", "tile_0000.png");
+        my.sprite.player = this.physics.add.sprite(30, 220, "platformer_characters", "tile_0000.png");
         my.sprite.player.setCollideWorldBounds(true);
-
-        // Enable collision handling
+        this.physics.world.setBounds(0,0,this.map.widthInPixels,this.map.heightInPixels);
         this.physics.add.collider(my.sprite.player, this.groundLayer);
-
+        this.physics.add.collider(my.sprite.player, this.dangerLayer);
         // TODO: Add coin collision handler
         
 
-        // set up Phaser-provided cursor key input
+       
         cursors = this.input.keyboard.createCursorKeys();
-
         this.rKey = this.input.keyboard.addKey('R');
-
-        // debug key listener (assigned to D key)
         this.input.keyboard.on('keydown-D', () => {
             this.physics.world.drawDebug = this.physics.world.drawDebug ? false : true
             this.physics.world.debugGraphic.clear()
@@ -98,9 +80,7 @@ class Platformer extends Phaser.Scene {
         });
 
         my.vfx.walking.stop();
-        
 
-        // TODO: add camera code here
         this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
         this.cameras.main.startFollow(my.sprite.player, true, 0.25, 0.25); // (target, [,roundPixels][,lerpX][,lerpY])
         this.cameras.main.setDeadzone(50, 50);
