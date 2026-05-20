@@ -3,7 +3,7 @@
  "imageheight":162,
  "imagewidth":360,
  "margin":0,
- "name":"tilemap_packed",
+ "name":"EndSet",
  "spacing":0,
  "tilecount":180,
  "tiledversion":"1.12.1",
@@ -51,7 +51,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":true
+                 "value":false
                 }]
         }, 
         {
@@ -60,7 +60,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":true
+                 "value":false
                 }]
         }, 
         {
@@ -159,7 +159,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":true
+                 "value":false
                 }]
         }, 
         {
@@ -168,7 +168,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":true
+                 "value":false
                 }]
         }, 
         {
@@ -177,7 +177,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":true
+                 "value":false
                 }]
         }, 
         {
@@ -186,7 +186,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":true
+                 "value":false
                 }]
         }, 
         {
@@ -231,7 +231,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":true
+                 "value":false
                 }]
         }, 
         {
@@ -240,7 +240,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":true
+                 "value":false
                 }]
         }, 
         {
@@ -249,7 +249,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":true
+                 "value":false
                 }]
         }, 
         {
@@ -276,7 +276,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":true
+                 "value":false
                 }]
         }, 
         {
@@ -339,7 +339,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":true
+                 "value":false
                 }]
         }, 
         {
@@ -348,7 +348,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":true
+                 "value":false
                 }]
         }, 
         {
@@ -357,7 +357,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":true
+                 "value":false
                 }]
         }, 
         {
@@ -366,7 +366,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":true
+                 "value":false
                 }]
         }, 
         {
@@ -438,7 +438,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":true
+                 "value":false
                 }]
         }, 
         {
@@ -447,7 +447,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":true
+                 "value":false
                 }]
         }, 
         {
@@ -456,7 +456,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":true
+                 "value":false
                 }]
         }, 
         {
@@ -465,7 +465,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":true
+                 "value":false
                 }]
         }, 
         {
@@ -519,7 +519,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":true
+                 "value":false
                 }]
         }, 
         {
@@ -528,7 +528,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":true
+                 "value":false
                 }]
         }, 
         {
@@ -537,7 +537,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":true
+                 "value":false
                 }]
         }, 
         {
@@ -546,7 +546,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":true
+                 "value":false
                 }]
         }, 
         {
@@ -627,7 +627,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":true
+                 "value":false
                 }]
         }, 
         {
@@ -699,7 +699,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":true
+                 "value":false
                 }]
         }, 
         {
@@ -708,7 +708,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":true
+                 "value":false
                 }]
         }, 
         {
@@ -717,7 +717,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":true
+                 "value":false
                 }]
         }, 
         {
@@ -726,7 +726,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":true
+                 "value":false
                 }]
         }, 
         {
@@ -1166,11 +1166,6 @@
          "properties":[
                 {
                  "name":"collides",
-                 "type":"bool",
-                 "value":false
-                }, 
-                {
-                 "name":"shroom",
                  "type":"bool",
                  "value":false
                 }]
