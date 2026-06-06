@@ -1,6 +1,6 @@
-class Platformer extends Phaser.Scene {
+class LevelTwo extends Phaser.Scene {
     constructor() {
-        super("platformerScene");
+        super("levelTwoScene");
     }
 
     init() {
@@ -14,8 +14,8 @@ class Platformer extends Phaser.Scene {
     }
 
     create() {
-
-        this.map = this.add.tilemap("HamsterDisaster", 18, 18, 125, 25);
+        console.log("create started");
+        this.map = this.add.tilemap("HamsterDisasterUpdate", 18, 18, 160, 25);
 
         this.tileset = this.map.addTilesetImage("tilemap_packed", "tilemap_tiles");
         
@@ -25,38 +25,46 @@ class Platformer extends Phaser.Scene {
             collides: true
         });
         this.dangerLayer = this.map.createLayer("Danger", this.tileset, 0, 0);
-        this.dangerLayer.setCollisionByProperty({
+        this.dangerLayer.setCollisionByExclusion([-1]);
+        this.fallingLayer = this.map.createLayer("Fall", this.tileset, 0, 0);
+        this.fallingLayer.setCollisionByProperty({
             collides: true
         });
         //this.collectLayer = this.map.createLayer("Objects", this.tileset, 0, 0);
-        this.goalLayer = this.map.createLayer("Goal", this.tileset, 0, 0);
+        this.endGoal = this.map.createLayer("Goal", this.tileset, 0, 0);
+        this.endGoal.setCollisionByProperty({
+            collides: true
+           });    
+        
+           //This should make is so that when the player touches the goal layer, the end screen is triggered by a statement in update.
         this.mySound = this.sound.add("bang", 1);
 
-        this.coins = this.map.createFromObjects("Objects", {
-            name: "Mushroom",
+        this.coins = this.map.createFromObjects("Collect", {
+            name: "gems",
             key: "tilemap_sheet",
-            frame: 128
+            frame: 67
         });
          this.physics.world.enable(this.coins, Phaser.Physics.Arcade.STATIC_BODY);
-
-        this.endGoal = this.map.createFromObjects("Objects", {
-            name: "flag",
-            key: "tilemap_sheet",
-            frame: 111
-        });
-        this.physics.world.enable(this.endGoal, Phaser.Physics.Arcade.STATIC_BODY);
- 
-       
-
         this.coinGroup = this.add.group(this.coins);
-        this.endGroup = this.add.group(this.endGoal);
-        
-        my.sprite.player = this.physics.add.sprite(30, 220, "platformer_characters", "tile_0002.png");
+       
+        my.sprite.player = this.physics.add.sprite(30, 220, "platformer_characters", "tile_0005.png");
         my.sprite.player.setCollideWorldBounds(true);
         this.physics.world.setBounds(0,0,this.map.widthInPixels,this.map.heightInPixels);
         this.physics.add.collider(my.sprite.player, this.groundLayer);
-        this.physics.add.collider(my.sprite.player, this.dangerLayer);
-        
+        this.physics.add.collider(my.sprite.player, this.fallingLayer);
+       // this.physics.add.collider(my.sprite.player, this.dangerLayer);
+       console.log("player created");
+        this.physics.add.collider(
+          my.sprite.player,
+          this.endGoal,
+          () => {
+            this.scene.start("endCopy");
+           },
+           null,
+           this
+           );
+
+           
 
         this.coinParticle = this.add.particles(0, 0, 'kenny-particles', {
             frame: 'star_01.png',
@@ -86,18 +94,12 @@ class Platformer extends Phaser.Scene {
             this.mySound.play();
         });
 
-        this.physics.add.overlap(my.sprite.player, this.endGroup, (obj1, obj2) => {
-            this.scene.start("end");
-        });
         
 
        
         cursors = this.input.keyboard.createCursorKeys();
         this.rKey = this.input.keyboard.addKey('R');
-        this.input.keyboard.on('keydown-D', () => {
-            this.physics.world.drawDebug = this.physics.world.drawDebug ? false : true
-            this.physics.world.debugGraphic.clear()
-        }, this);
+        
 
 
         my.vfx.walking = this.add.particles(0, 0, "kenny-particles", {
@@ -125,28 +127,21 @@ class Platformer extends Phaser.Scene {
         this.cameras.main.setZoom(this.SCALE);
         
 
-        this.score = 0;
-        this.scoreText = this.add.text(my.sprite.player.x+565, my.sprite.player.y-325, 'Score: 0', {
-          fontSize: '12px',
-          fill: '#ffffff'
-        });
-        //this.scoreText.startFollow(my.sprite.player, true, 0.25, 0.25);
-        this.scoreText.setText('Score: ' + this.score);
-        //this.scoreText.startFollow(my.sprite.player, true, 0.25, 0.25);
-        
-
+        this.isDying = false;
+        this.physics.add.collider(
+         my.sprite.player,
+         this.dangerLayer,
+         this.playerDeath,
+         null,
+         this
+         );
+         console.log("create finished");
     }
 
     update() {
-        this.scoreText.setText('Score: ' + this.score);
-        
-        if (my.sprite.player.y >= 420){
-          this.scene.start("loadScene");
-        }
-        if (my.sprite.player.x >= 2200){
-          this.scene.start("endCopy");
-          //this.scene.start("loadTwoScene");
-        }
+        if (this.isDying) {
+         return;
+        }        
 
         if(cursors.left.isDown) {
             my.sprite.player.setAccelerationX(-this.ACCELERATION);
@@ -204,4 +199,24 @@ class Platformer extends Phaser.Scene {
             this.scene.restart();
         }
     }
+
+    playerDeath() {
+    if (this.isDying) return;
+    this.isDying = true;
+    my.sprite.player.setVelocity(0, 0);
+    my.sprite.player.setAcceleration(0, 0);
+
+    my.sprite.player.setTint(0xff0000);
+
+    this.tweens.add({
+        targets: my.sprite.player,
+        y: "-=80",
+        duration: 400,
+        ease: "Power2",
+        yoyo: true,
+        onComplete: () => {
+            this.scene.start("loadScene");
+        }
+    });
+}
 }

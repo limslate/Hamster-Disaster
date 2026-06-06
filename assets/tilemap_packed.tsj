@@ -166,6 +166,11 @@
          "id":17,
          "properties":[
                 {
+                 "name":"Danger",
+                 "type":"bool",
+                 "value":true
+                }, 
+                {
                  "name":"collides",
                  "type":"bool",
                  "value":true
@@ -175,6 +180,11 @@
          "id":18,
          "properties":[
                 {
+                 "name":"Danger",
+                 "type":"bool",
+                 "value":true
+                }, 
+                {
                  "name":"collides",
                  "type":"bool",
                  "value":true
@@ -183,6 +193,11 @@
         {
          "id":19,
          "properties":[
+                {
+                 "name":"Danger",
+                 "type":"bool",
+                 "value":true
+                }, 
                 {
                  "name":"collides",
                  "type":"bool",
@@ -322,6 +337,11 @@
                  "name":"collides",
                  "type":"bool",
                  "value":false
+                }, 
+                {
+                 "name":"isWater",
+                 "type":"bool",
+                 "value":true
                 }]
         }, 
         {
@@ -331,6 +351,11 @@
                  "name":"collides",
                  "type":"bool",
                  "value":false
+                }, 
+                {
+                 "name":"isWater",
+                 "type":"bool",
+                 "value":true
                 }]
         }, 
         {
@@ -502,6 +527,11 @@
                  "name":"collides",
                  "type":"bool",
                  "value":false
+                }, 
+                {
+                 "name":"isWater",
+                 "type":"bool",
+                 "value":true
                 }]
         }, 
         {
@@ -511,6 +541,11 @@
                  "name":"collides",
                  "type":"bool",
                  "value":false
+                }, 
+                {
+                 "name":"isWater",
+                 "type":"bool",
+                 "value":true
                 }]
         }, 
         {
@@ -625,6 +660,11 @@
          "id":68,
          "properties":[
                 {
+                 "name":"Danger",
+                 "type":"bool",
+                 "value":true
+                }, 
+                {
                  "name":"collides",
                  "type":"bool",
                  "value":true
@@ -682,6 +722,11 @@
                  "name":"collides",
                  "type":"bool",
                  "value":false
+                }, 
+                {
+                 "name":"isWater",
+                 "type":"bool",
+                 "value":true
                 }]
         }, 
         {
@@ -691,6 +736,11 @@
                  "name":"collides",
                  "type":"bool",
                  "value":false
+                }, 
+                {
+                 "name":"isWater",
+                 "type":"bool",
+                 "value":true
                 }]
         }, 
         {
@@ -852,7 +902,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }]
         }, 
         {
@@ -861,7 +911,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }]
         }, 
         {
@@ -1012,18 +1062,28 @@
          "id":111,
          "properties":[
                 {
+                 "name":"IsGoal",
+                 "type":"bool",
+                 "value":true
+                }, 
+                {
                  "name":"collides",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }]
         }, 
         {
          "id":112,
          "properties":[
                 {
+                 "name":"IsGoal",
+                 "type":"bool",
+                 "value":true
+                }, 
+                {
                  "name":"collides",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }]
         }, 
         {
@@ -1032,7 +1092,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }]
         }, 
         {
@@ -1041,7 +1101,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }]
         }, 
         {
@@ -1168,11 +1228,6 @@
                  "name":"collides",
                  "type":"bool",
                  "value":false
-                }, 
-                {
-                 "name":"shroom",
-                 "type":"bool",
-                 "value":false
                 }]
         }, 
         {
@@ -1197,9 +1252,14 @@
          "id":131,
          "properties":[
                 {
+                 "name":"IsGoal",
+                 "type":"bool",
+                 "value":true
+                }, 
+                {
                  "name":"collides",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }]
         }, 
         {
@@ -1208,7 +1268,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }]
         }, 
         {
@@ -1217,7 +1277,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }]
         }, 
         {
@@ -1226,7 +1286,7 @@
                 {
                  "name":"collides",
                  "type":"bool",
-                 "value":false
+                 "value":true
                 }]
         }, 
         {

@@ -11,7 +11,7 @@ let config = {
     physics: {
         default: 'arcade',
         arcade: {
-            debug: true,
+            debug: false,
             gravity: {
                 x: 0,
                 y: 0
@@ -20,7 +20,7 @@ let config = {
     },
     width: 1540,
     height: 750,
-    scene: [Load, Platformer, End, Ending]
+    scene: [Load, LevelTwo, End, Ending]
 }
 
 var cursors;
